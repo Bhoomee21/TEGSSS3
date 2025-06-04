@@ -1,0 +1,33 @@
+pipeline {
+    agent any
+
+    tools {
+        maven 'Maven 3.8.1'  // or whatever version is installed on Jenkins
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/Bhoomee21/TEGSSS3.git'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh 'mvn clean install'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                sh 'mvn test'
+            }
+        }
+
+        stage('Package') {
+            steps {
+                sh 'mvn package'
+            }
+        }
+    }
+}
